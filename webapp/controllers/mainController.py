@@ -1,8 +1,9 @@
-from flask import Blueprint
+from flask import Blueprint, redirect, url_for
 
 main = Blueprint('main', __name__)
 
 
 @main.route('/')
 def home():
-    return "hello manager!"
+    return redirect(url_for('workerList.list_worker'))
+
