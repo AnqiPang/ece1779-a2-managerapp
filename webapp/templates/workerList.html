@@ -2,21 +2,28 @@
 {% block content %}
     <div class="spacer-50"></div>
     <section>
-        {% for instance, cpu_chart, networkin_chart in charts %}
 
-            <div class="row align-center">
-                <h3 class="mb-4" style="padding-top: 2rem">Instance worker:  {{ instance }}</h3>
-            </div>
-            <div class="spacer-20"></div>
-            <div class="row charts">
-                <div class="col-md-6">
-                    <img src="data:;base64,{{ cpu_chart }}"/>
-                </div>
-                <div class="col-md-6" style="margin-right: 0">
-                    <img src="data:;base64,{{ networkin_chart }}"/>
-                </div>
-            </div>
-            <div class="spacer-50"></div>
-        {% endfor %}
+      <div style="border-bottom: #444444 1px solid">
+        <h3>Load Balancer DNS:</h3>
+        <a href="http://ece1779a2-lb-247488605.us-east-1.elb.amazonaws.com/login">http://ece1779a2-lb-247488605.us-east-1.elb.amazonaws.com/login</a>
+        <div class="spacer-20"></div>
+      </div>
+      <div class="spacer-50"></div>
+      {% for instance, cpu_chart, networkin_chart in charts %}
+
+          <div class="row align-center">
+              <h3 class="mb-4" style="padding-top: 2rem">Instance worker:  {{ instance }}</h3>
+          </div>
+          <div class="spacer-20"></div>
+          <div class="row charts">
+              <div class="col-md-6">
+                  <img src="data:;base64,{{ cpu_chart }}"/>
+              </div>
+              <div class="col-md-6" style="margin-right: 0">
+                  <img src="data:;base64,{{ networkin_chart }}"/>
+              </div>
+          </div>
+          <div class="spacer-50"></div>
+      {% endfor %}
     </section>
 {% endblock content %}
