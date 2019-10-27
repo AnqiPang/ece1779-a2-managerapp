@@ -4,7 +4,8 @@ CPUUtilization_REQUEST = {
       "metrics": [
           ["AWS/EC2", "CPUUtilization", "InstanceId", "value of instance id", {"stat": "Average"}]
       ],
-      "period": 300,
+      "period": 60,
+      "start": "-PT0.5H",
       "stacked": False,
       "yAxis": {
           "left": {
