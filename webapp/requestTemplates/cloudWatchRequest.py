@@ -9,7 +9,6 @@ CPUUtilization_REQUEST = {
       "yAxis": {
           "left": {
               "min": 0.1,
-              "max": 1
           },
           "right": {
               "min": 0
