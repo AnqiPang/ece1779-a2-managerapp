@@ -156,3 +156,8 @@ input:invalid+b+[type="submit"] {
   justify-content: center;
 }
 
+.charts{
+  margin-right: -5% !important;
+  margin-left: -5% !important;
+}
+
