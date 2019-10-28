@@ -15,8 +15,8 @@ class AutoScalingPolicyForm(FlaskForm):
 
 
 class WorkerManagementService:
-    def save_management_data(self, threshold_growing, threshold_shrinking, ratio_growing, ratio_shrinking):
-        workerManagementRepo.save_management_data(threshold_growing, threshold_shrinking, ratio_growing, ratio_shrinking)
+    def update_management_data(self, threshold_growing, threshold_shrinking, ratio_growing, ratio_shrinking):
+        workerManagementRepo.update_management_data(threshold_growing, threshold_shrinking, ratio_growing, ratio_shrinking)
 
 
 

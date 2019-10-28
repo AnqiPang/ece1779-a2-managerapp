@@ -13,7 +13,7 @@ def manage_worker():
     form = AutoScalingPolicyForm()
     if form.validate_on_submit():
         worker_management_service = WorkerManagementService()
-        worker_management_service.save_management_data(form.thresholdForGrowing.data, form.thresholdForShrinking.data,
+        worker_management_service.update_management_data(form.thresholdForGrowing.data, form.thresholdForShrinking.data,
                                                        form.ratioToGrowing.data, form.ratioToShrinking.data)
     else:
         if request.method == 'POST':
