@@ -1,8 +1,9 @@
-NETWORKIN_REQUEST = {
+NETWORK_PACKETS_IN_REQUEST = {
+      "view": "timeSeries",
       "width": 600,
       "height": 395,
       "metrics": [
-          ["AWS/EC2", "NetworkIn", "InstanceId", "value of instance id", {"stat": "Average"}]
+          ["AWS/EC2", "NetworkPacketsIn", "InstanceId", "value of instance id", {"stat": "Sum"}]
       ],
       "period": 60,
       "start": "-PT0.5H",

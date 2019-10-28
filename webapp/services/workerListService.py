@@ -2,7 +2,7 @@ from flask import current_app
 import json
 import base64
 from webapp.requestTemplates.cpuRequest import *
-from webapp.requestTemplates.networkInRequest import *
+from webapp.requestTemplates.networkPacketsInRequest import *
 import boto3
 
 
@@ -24,8 +24,8 @@ class WorkListService:
             cpu_chart = base64.b64encode(cpu_response['MetricWidgetImage']).decode("utf-8")
             cpu_charts.append(cpu_chart)
 
-            NETWORKIN_REQUEST["metrics"][0][3] = instance_id
-            networkin_response = self.CLOUD_WATCH.get_metric_widget_image(MetricWidget=json.dumps(NETWORKIN_REQUEST))
+            NETWORK_PACKETS_IN_REQUEST["metrics"][0][3] = instance_id
+            networkin_response = self.CLOUD_WATCH.get_metric_widget_image(MetricWidget=json.dumps(NETWORK_PACKETS_IN_REQUEST))
             networkin_chart = base64.b64encode(networkin_response['MetricWidgetImage']).decode("utf-8")
             networkin_charts.append(networkin_chart)
 
