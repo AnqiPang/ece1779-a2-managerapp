@@ -13,7 +13,7 @@ class WorkListService:
     def get_charts(self):
         target_group = self.CLIENT.describe_target_health(TargetGroupArn=current_app.config["TARGET_GROUP_ARN"])
         cpu_charts = []
-        networkin_charts = []
+        network_packets_in_charts = []
         instances = []
         for target in target_group['TargetHealthDescriptions']:
             instance_id = target['Target']['Id']
@@ -25,8 +25,9 @@ class WorkListService:
             cpu_charts.append(cpu_chart)
 
             NETWORK_PACKETS_IN_REQUEST["metrics"][0][3] = instance_id
-            networkin_response = self.CLOUD_WATCH.get_metric_widget_image(MetricWidget=json.dumps(NETWORK_PACKETS_IN_REQUEST))
-            networkin_chart = base64.b64encode(networkin_response['MetricWidgetImage']).decode("utf-8")
-            networkin_charts.append(networkin_chart)
+            network_packets_in_response = self.CLOUD_WATCH.get_metric_widget_image(
+              MetricWidget=json.dumps(NETWORK_PACKETS_IN_REQUEST))
+            network_packet_in_chart = base64.b64encode(network_packets_in_response['MetricWidgetImage']).decode("utf-8")
+            network_packets_in_charts.append(network_packet_in_chart)
 
-        return instances, cpu_charts, networkin_charts
+        return instances, cpu_charts, network_packets_in_charts
