@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from webapp.services import workerManagementService
 
 
 workerManagement = Blueprint('workerManagement', __name__)
@@ -6,4 +7,5 @@ workerManagement = Blueprint('workerManagement', __name__)
 
 @workerManagement.route("/workers/management", methods=["GET"])
 def manage_worker():
-    return render_template("workerManagement.html")
+    auto_scaling_policy_form = workerManagementService.AutoScalingPolicyForm()
+    return render_template("workerManagement.html", form=auto_scaling_policy_form)

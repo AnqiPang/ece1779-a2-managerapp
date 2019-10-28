@@ -2,7 +2,7 @@
 {% block content %}
     <div class="spacer-50"></div>
     <section>
-      <div style="border-bottom: 1px solid #ccc">
+      <div class="border-bottom">
           <h3>Manage worker pool size:</h3>
           <div class="spacer-50"></div>
           <div class="row">
@@ -18,6 +18,136 @@
               </div>
           </div>
           <div class="spacer-50"></div>
+      </div>
+      <div class="spacer-50"></div>
+      <form method="POST" action="">
+          {{ form.csrf_token }}
+          <fieldset class="form-group">
+              <h3>Manage worker pool size:</h3>
+              <div class="spacer-50"></div>
+              <div class="form-group">
+                  {{ form.thresholdForGrowing.label(class="form-control-label") }}
+                  {% if form.thresholdForGrowing.errors %}
+                    {{ form.thresholdForGrowing(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.thresholdForGrowing.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                          <input type="text" class="form-control" name="thresholdForGrowing">
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                  {{ form.thresholdForShrinking.label(class="form-control-label") }}
+                  {% if form.thresholdForShrinking.errors %}
+                    {{ form.thresholdForShrinking(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.thresholdForShrinking.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                          <input type="text" class="form-control" name="thresholdForShrinking">
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                  {{ form.ratioToGrowing.label(class="form-control-label") }}
+                  {% if form.ratioToGrowing.errors %}
+                    {{ form.ratioToGrowing(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.ratioToGrowing.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                          <input type="text" class="form-control" name="thresholdForShrinking">
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                  {{ form.ratioToShrinking.label(class="form-control-label") }}
+                  {% if form.ratioToShrinking.errors %}
+                    {{ form.ratioToShrinking(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.ratioToShrinking.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                          <input type="text" class="form-control" name="thresholdForShrinking">
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info btn-dark-blue") }}
+              </div>
+              <div class="spacer-50 border-bottom"></div>
+          </fieldset>
+      </form>
+      <div class="spacer-50"></div>
+
+      <div class="border-bottom">
+          <h3>Stop Manager: </h3>
+          <div class="spacer-30"></div>
+          <a class="btn btn-lg btn-dark-blue" data-toggle="modal" data-target="#stopManager" style="width: 50%" href="">
+              <span>Stop</span>
+          </a>
+          <div class="spacer-50"></div>
+      </div>
+      <div class="modal fade" id="stopManager" tabindex="-1" role="dialog" aria-labelledby="stopManagerLabel"
+             aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h3>Confirmation</h3>
+              </div>
+              <div class="modal-body">
+                <span>Are you sure you want to terminates all the workers and then stops the manager itself?</span>
+              </div>
+              <div class="modal-footer">
+                <div>
+                  <a class="btn btn-primary btn-dark-blue" href="/dosomethinghere">
+                    <span>Confirm</span>
+                  </a>
+                  <a class="btn btn-primary btn-dark-blue" data-dismiss="modal">
+                    <span>Cancel</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="spacer-50"></div>
+
+      <div>
+          <h3>Deleting all application data: </h3>
+          <div class="spacer-30"></div>
+          <a class="btn btn-lg btn-dark-blue" data-toggle="modal" data-target="#deleteAppData" style="width: 50%" href="">
+              <span>Delete</span>
+          </a>
+          <div class="spacer-50"></div>
+      </div>
+      <div class="modal fade" id="deleteAppData" tabindex="-1" role="dialog" aria-labelledby="deleteAppDataLabel"
+             aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3>Confirmation</h3>
+              </div>
+              <div class="modal-body">
+                <span>Are you sure you want to delete application data stored on the database and all images stored on S3?</span>
+              </div>
+              <div class="modal-footer">
+                <div>
+                  <a class="btn bt-primary btn-dark-blue" href="/dosomethinghere">
+                    <span>Confirm</span>
+                  </a>
+                  <a class="btn btn-primary btn-dark-blue" data-dismiss="modal">
+                    <span>Cancel</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
     </section>
 {% endblock content %}
