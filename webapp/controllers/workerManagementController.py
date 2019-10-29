@@ -7,6 +7,8 @@ workerManagement = Blueprint('workerManagement', __name__)
 WORKER_MANAGEMENT_PAGE = "workerManagement.html"
 INTERNAL_ERROR_MSG = "Internal Error, please try again later."
 AUTO_SCALING_POLICY_CHANGE_SUCCESS_MSG = "Auto-scaling policy has been changed successfully!"
+GROW_ONE_WORKER_SUCCESS_MSG = "Worker pool size has growed by 1 successfully!"
+SHRINK_ONE_WORKER_SUCCESS_MSG = "Worker pool size has shrinked by 1 successfully!"
 
 
 @workerManagement.route("/workers/management", methods=["GET", "POST"])
@@ -23,3 +25,9 @@ def manage_worker():
             current_app.logger.error("----------Internal Error: {}----------".format(form.errors))
             return render_template(WORKER_MANAGEMENT_PAGE, form=form, error=INTERNAL_ERROR_MSG), 500
     return render_template(WORKER_MANAGEMENT_PAGE, form=form)
+
+@workerManagement.route("/workers/grow_one", method=["GET", "POST"])
+def grow_onw_worker():
+    worker_management_service = WorkerManagementService()
+    worker_management_service.grow_one_worker()
+    return render_template(WORKER_MANAGEMENT_PAGE, message=GROW_ONE_WORKER_SUCCESS_MSG)
