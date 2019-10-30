@@ -13,3 +13,4 @@ class WorkerManagement(db.Model):
         self.threshold_shrinking = threshold_shrinking
         self.ratio_growing = ratio_growing
         self.ratio_shrinking = ratio_shrinking
+

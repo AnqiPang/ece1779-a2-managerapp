@@ -12,3 +12,4 @@ def update_management_data(threshold_growing, threshold_shrinking, ratio_growing
         record.ratio_growing = ratio_growing
         record.ratio_shrinking = ratio_shrinking
     db.session.commit()
+

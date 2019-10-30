@@ -18,32 +18,40 @@ class AutoScalingPolicyForm(FlaskForm):
 
 
 class WorkerManagementService:
-    EC2 = boto3.client('ec2', region_name=current_app.config.ZONE)
+    EC2 = boto3.client('ec2')
     ELB = boto3.client('elbv2')
 
     def create_new_instance(self):
         response = self.EC2.run_instances(
-            ImageId=current_app.config.AMI_ID,
+            ImageId=current_app.config["AMI_ID"],
             Monitoring={'Enabled': True},
-            Placement={'AvailabilityZone': current_app.config.ZONE},
-            instanceType=current_app.config.INSTANCE_TYPE,
+            Placement={'AvailabilityZone': current_app.config["ZONE"]},
+            InstanceType=current_app.config["INSTANCE_TYPE"],
             MinCount=1,
             MaxCount=1,
-            KeyName=current_app.config.KEYNAME,
-            SecurityGroupIds=current_app.config.SG,
-            TagSpecifications=[{'ResourceType': 'instance',
-                                'Tags': [{'Key': 'Name',
-                                          'Value': current_app.config.EC2NAME}]
-                                }]
+            KeyName=current_app.config["KEYNAME"],
+            SubnetId=current_app.config["SUBNETID"],
+            SecurityGroupIds=current_app.config["SG"],
+            TagSpecifications=[
+                {
+                    'ResourceType': 'instance',
+                    'Tags': [
+                        {
+                            'Key': 'Name',
+                            'Value': current_app.config["EC2NAME"]
+                        },
+                    ]
+                 },
+            ],
         )
-        for instance in response['Instance']:
+        for instance in response['Instances']:
             print(instance['InstanceId'] + " created!")
-        return response['Instance'][0]['InstanceId']
+        return response['Instances'][0]['InstanceId']
 
     def get_stopped_instances(self):
-        ec2_filter = [{'Name': 'tag:Name', 'Values': [current_app.config.EC2NAME]},
-                      {'Name': 'instance-state-name', 'Values': ['stopped', 'terminated']}]
-        return self.EC2.instances.filter(Filters=ec2_filter)
+        ec2_filter = [{'Name': 'tag:Name', 'Values': [current_app.config["EC2NAME"]]},
+                      {'Name': 'instance-state-name', 'Values': ['stopped']}]
+        return self.EC2.describe_instances(Filters=ec2_filter)
 
     def register_target(self, instance_id):
         targetGroup=current_app.config["TARGET_GROUP_ARN"]
@@ -52,19 +60,19 @@ class WorkerManagementService:
         self.ELB.register_targets(TargetGroupArn = targetGroup, Targets = target)
 
     def grow_one_worker(self):
-        stopped_instances = self.get_stopped_instances()
+        stopped_instances = self.get_stopped_instances()['Reservations']
         if stopped_instances:
-            new_instance_id = stopped_instances[0].instance_id
+            new_instance_id = stopped_instances[0]['Instances'][0]['InstanceId']
             self.EC2.start_instances(InstanceIds=[new_instance_id])
         else: #create a new instance
             new_instance_id = self.create_new_instance()
-        state = self.EC2.describe_instance_state(InstanceIds=[new_instance_id])
-        while len(state['InstanceStatuses']) < 1:
+        status = self.EC2.describe_instance_status(InstanceIds=[new_instance_id])
+        while len(status['InstanceStatuses']) < 1:
             time.sleep(1)
-            state = self.EC2.describe_instance_state(InstanceIds=[new_instance_id])
-        while state['InstanceStatuses'][0]['InstanceState']['Name'] != 'running':
+            status = self.EC2.describe_instance_status(InstanceIds=[new_instance_id])
+        while status['InstanceStatuses'][0]['InstanceState']['Name'] != 'running':
             time.sleep(1)
-            state = self.EC2.describe_instance_state(InstanceIds=[new_instance_id])
+            status = self.EC2.describe_instance_status(InstanceIds=[new_instance_id])
         self.register_target(new_instance_id)
 
     def get_target_instance(self):
@@ -82,6 +90,9 @@ class WorkerManagementService:
         self.ELB.deregister_targets(TargetGroupArn=target_group,
                                     Targets=target)
 
+    def stop_instance(self, instance_id):
+        self.EC2.stop_instances(InstanceIds=[instance_id], Hibernate=False, Force=False)
+
     def shrink_one_worker(self):
         target_instance_id = self.get_target_instance()
         error = False
@@ -90,8 +101,8 @@ class WorkerManagementService:
             return [error, 'Worker pool size is less than 1!']
         else:
             self.deregister_target(target_instance_id[0])
+            self.stop_instance(target_instance_id[0])
             return [error, '']
-
 
     def update_management_data(self, threshold_growing, threshold_shrinking, ratio_growing, ratio_shrinking):
         workerManagementRepo.update_management_data(threshold_growing, threshold_shrinking, ratio_growing,
