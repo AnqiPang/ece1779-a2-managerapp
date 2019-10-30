@@ -104,6 +104,22 @@ class WorkerManagementService:
             self.stop_instance(target_instance_id[0])
             return [error, '']
 
+
+    def stop_manager(self):
+        targets = self.get_target_instance()
+        for target_id in targets:
+            self.stop_instance(target_id)
+        for target_id in targets:
+            status = self.EC2.describe_instance_status(InstanceIds=[target_id])
+            while len(status['InstanceStatuses']) < 1:
+                time.sleep(1)
+                status = self.EC2.describe_instance_status(InstanceIds=[target_id])
+            while status['InstanceStatuses'][0]['InstanceState']['Name'] != 'terminated':
+                time.sleep(1)
+                status = self.EC2.describe_instance_status(InstanceIds=[target_id])
+        manager_filter = [{'Name': 'tag:Name', 'Values': [current_app.config["MANAGER_NAME"]]}]
+        
+
     def update_management_data(self, threshold_growing, threshold_shrinking, ratio_growing, ratio_shrinking):
         workerManagementRepo.update_management_data(threshold_growing, threshold_shrinking, ratio_growing,
                                                     ratio_shrinking)
