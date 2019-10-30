@@ -3,7 +3,7 @@ NETWORK_PACKETS_IN_REQUEST = {
       "width": 600,
       "height": 395,
       "metrics": [
-          ["AWS/EC2", "NetworkPacketsIn", "InstanceId", "value of instance id", {"stat": "Sum"}]
+          ["AWS/EC2", "NetworkPacketsIn", "InstanceId", "value of instance id", {"stat": "Average"}]
       ],
       "period": 60,
       "start": "-PT0.5H",

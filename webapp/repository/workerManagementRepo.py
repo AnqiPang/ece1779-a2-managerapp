@@ -1,4 +1,5 @@
 from webapp.models.workerManagement import *
+from webapp.models.scriptMonitor import *
 
 
 def update_management_data(threshold_growing, threshold_shrinking, ratio_growing, ratio_shrinking):
