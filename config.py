@@ -14,7 +14,7 @@ class Config(object):
 
     AMI_ID = 'ami-0f7118067ffa41e5f'
     INSTANCE_TYPE = 't2.small'
-    KEYNAME = 'ECE1779A2'
+    KEYNAME = 'ece1779a2'
     SG = ['sg-091c7fa2c83cd95cd']
     ZONE = 'us-east-1a'
     EC2NAME = 'a2'
