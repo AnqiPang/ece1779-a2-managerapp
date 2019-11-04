@@ -30,6 +30,7 @@ class WorkerManagementService:
             InstanceType=current_app.config["INSTANCE_TYPE"],
             MinCount=1,
             MaxCount=1,
+            UserData = current_app.config["USERDATA"],
             KeyName=current_app.config["KEYNAME"],
             SubnetId=current_app.config["SUBNETID"],
             SecurityGroupIds=current_app.config["SG"],
