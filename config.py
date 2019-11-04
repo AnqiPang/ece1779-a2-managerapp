@@ -8,9 +8,8 @@ class Config(object):
     TARGET_GROUP_ARN = "arn:aws:elasticloadbalancing:us-east-1:479498022568:targetgroup/ECE1779A2-TG/b7c975c015d56e4a"
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    # SQLALCHEMY_DATABASE_URI = "mysql://ece1779a1:password123@localhost/ece1779a1"
-
-    SQLALCHEMY_DATABASE_URI = "mysql://ece1779a2:password123@ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2"
+    SQLALCHEMY_DATABASE_URI = "mysql://ece1779a1:password123@localhost/ece1779a1"
+    # SQLALCHEMY_DATABASE_URI = "mysql://ece1779a2:password123@ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2"
 
     AMI_ID = 'ami-0f7118067ffa41e5f'
     INSTANCE_TYPE = 't2.small'

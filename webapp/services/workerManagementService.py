@@ -145,15 +145,21 @@ class WorkerManagementService:
                                                     ratio_shrinking)
 
     def delete_s3_app_data(self):
-        for item in self.S3.list_objects(Bucket=current_app.config['S3_BUCKET'])['Contents']:
-            self.S3.delete_objects(
-                Bucket=current_app.config['S3_BUCKET'],
-                Delete={
-                    'Objects': [
-                        {
-                            'Key': item['Key'],
-                        },
-                    ],
-                    'Quiet': True
-                },
-            )
+        error = False
+        if 'Contents' in self.S3.list_objects(Bucket=current_app.config['S3_BUCKET']):
+            for item in self.S3.list_objects(Bucket=current_app.config['S3_BUCKET'])['Contents']:
+                self.S3.delete_objects(
+                    Bucket=current_app.config['S3_BUCKET'],
+                    Delete={
+                        'Objects': [
+                            {
+                                'Key': item['Key'],
+                            },
+                        ],
+                        'Quiet': True
+                    },
+                )
+            return [error, '']
+        else:
+            error = True
+            return [error, 'There is no application data to delete!']
