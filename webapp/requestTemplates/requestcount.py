@@ -6,12 +6,12 @@ RequestCount_IN_REQUEST = {
       "metrics": [
           ["AWS/ApplicationELB", "RequestCount", "LoadBalancer", "app/ECE1779A2-LB/9ca6ccb762876696", {"stat": "Sum"}]
       ],
-      "period": 60,
-      "start": "-PT0.5H",
+      "period": 300,
+      "start": "-PT1.5H",
       "stacked": False,
       "yAxis": {
           "left": {
-              "min": 1,
+              "min": 0,
           },
           "right": {
               "min": 0
