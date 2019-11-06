@@ -5,6 +5,7 @@ from webapp.requestTemplates.cpuRequest import *
 from webapp.requestTemplates.networkPacketsInRequest import *
 import boto3
 from webapp.requestTemplates.requestcount import *
+from webapp.requestTemplates.requests import *
 
 
 class WorkListService:
@@ -14,7 +15,7 @@ class WorkListService:
     def get_charts(self):
         target_group = self.CLIENT.describe_target_health(TargetGroupArn=current_app.config["TARGET_GROUP_ARN"])
         cpu_charts = []
-        RequestCount_in_charts = []
+        request_charts = []
         instances = []
         for target in target_group['TargetHealthDescriptions']:
             if target['TargetHealth']['State'] != 'draining':
@@ -35,8 +36,16 @@ class WorkListService:
 
                 #LoadBalancer RequestCount
                 #RequestCount_IN_REQUEST["metrics"][0][3] = instance_id
-                RequestCount_in_response = self.CLOUD_WATCH.get_metric_widget_image(
-                MetricWidget=json.dumps(RequestCount_IN_REQUEST))
-                RequestCount_in_chart = base64.b64encode(RequestCount_in_response['MetricWidgetImage']).decode("utf-8")
-                RequestCount_in_charts.append(RequestCount_in_chart)
-        return instances, cpu_charts, RequestCount_in_charts
+                # RequestCount_in_response = self.CLOUD_WATCH.get_metric_widget_image(
+                # MetricWidget=json.dumps(RequestCount_IN_REQUEST))
+                # RequestCount_in_chart = base64.b64encode(RequestCount_in_response['MetricWidgetImage']).decode("utf-8")
+                # RequestCount_in_charts.append(RequestCount_in_chart)
+
+
+                Requests_bulabula["metrics"][0][3] = instance_id
+                Requests_in_response = self.CLOUD_WATCH.get_metric_widget_image(
+                    MetricWidget=json.dumps(Requests_bulabula))
+                RequestCount_in_chart = base64.b64encode(Requests_in_response['MetricWidgetImage']).decode("utf-8")
+                request_charts.append(RequestCount_in_chart)
+
+        return instances, cpu_charts, request_charts
