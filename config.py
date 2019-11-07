@@ -11,7 +11,9 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = "mysql://root:hzx960209@localhost/A2"
     # SQLALCHEMY_DATABASE_URI = "mysql://ece1779a2:password123@ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2"
 
-    AMI_ID = 'ami-0f7118067ffa41e5f'
+    # Nov 6th: "ami-0353607cefbd075a3"
+    # previous AMI: 'ami-0f7118067ffa41e5f'
+    AMI_ID = 'ami-0353607cefbd075a3'
     INSTANCE_TYPE = 't2.small'
     KEYNAME = 'ece1779a2'
     SG = ['sg-091c7fa2c83cd95cd']
