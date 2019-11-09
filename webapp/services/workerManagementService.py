@@ -9,11 +9,12 @@ from webapp.repository import workerManagementRepo
 
 class AutoScalingPolicyForm(FlaskForm):
     thresholdForGrowing = IntegerField('CPU threshold for growing the pool',
-                                       validators=[NumberRange(min=0, max=100)])
+                                       validators=[NumberRange(min=50, max=100)])
     thresholdForShrinking = IntegerField('CPU threshold for shrinking the pool',
-                                         validators=[NumberRange(min=0, max=100)])
-    ratioToGrowing = FloatField('Ratio to expand the pool', validators=[NumberRange(min=0, max=10)])
-    ratioToShrinking = FloatField('Ratio to shrink the pool', validators=[NumberRange(min=0, max=10)])
+                                         validators=[NumberRange(min=0, max=50)])
+    ratioToGrowing = FloatField('Ratio to expand the pool', validators=[NumberRange(min=0.1, max=10)])
+    ratioToShrinking = FloatField('Ratio to shrink the pool', validators=[NumberRange(min=0.1, max=10)])
+
     submit = SubmitField('Submit')
 
 
