@@ -65,8 +65,6 @@ def stop_manager():
 @workerManagement.route("/workers/clear_s3")
 def clear_s3():
     worker_management_service = WorkerManagementService()
-    [error, msg] = worker_management_service.delete_s3_app_data()
-    if error:
-        return redirect(url_for('workerManagement.manage_worker', error=msg))
-    else:
-        return redirect(url_for('workerManagement.manage_worker', message=CLEAR_S3_SUCCESS_MSG))
+    worker_management_service.delete_s3_app_data()
+    worker_management_service.delete_rds_data()
+    return redirect(url_for('workerManagement.manage_worker', message=CLEAR_S3_SUCCESS_MSG))

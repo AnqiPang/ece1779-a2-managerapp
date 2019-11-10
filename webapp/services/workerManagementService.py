@@ -1,5 +1,6 @@
 import time
 import boto3
+import pymysql
 from flask import current_app
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, IntegerField, FloatField
@@ -68,9 +69,6 @@ class WorkerManagementService:
     def grow_one_worker(self):
         target_instance_id = self.get_target_instance()
         error = False
-        if len(target_instance_id) >= 10:
-            error = True
-            return [error, 'The maximum size of the worker pool is 10!']
         stopped_instances = self.get_stopped_instances()['Reservations']
         if stopped_instances:
             new_instance_id = stopped_instances[0]['Instances'][0]['InstanceId']
@@ -111,9 +109,9 @@ class WorkerManagementService:
     def shrink_one_worker(self):
         target_instance_id = self.get_target_instance()
         error = False
-        if len(target_instance_id) <= 1:
+        if len(target_instance_id) < 1:
             error = True
-            return [error, 'The minimum size of the worker pool is 1!']
+            return [error, 'No more worker to shrink!']
         else:
             self.deregister_target(target_instance_id[0])
             self.stop_instance(target_instance_id[0])
@@ -160,7 +158,13 @@ class WorkerManagementService:
                         'Quiet': True
                     },
                 )
-            return [error, '']
-        else:
-            error = True
-            return [error, 'There is no application data to delete!']
+
+    def delete_rds_data(self):
+        db_conn = pymysql.connect(user=current_app.config['RDS']['user'],
+                                  password=current_app.config['RDS']['password'],
+                                  host=current_app.config['RDS']['host'],
+                                  database=current_app.config['RDS']['database'])
+        cursor = db_conn.cursor()
+        cursor.execute("""TRUNCATE TABLE user""")
+        cursor.execute("""TRUNCATE TABLE image""")
+        db_conn.commit()
