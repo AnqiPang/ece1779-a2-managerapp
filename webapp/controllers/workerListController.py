@@ -8,6 +8,7 @@ workerList = Blueprint('workerList', __name__)
 @workerList.route("/workers", methods=["GET"])
 def list_worker():
     work_list_service = WorkListService()
-    instances, cpu_charts, network_packets_in_charts = work_list_service.get_charts()
+    instances, cpu_charts, requests_charts = work_list_service.get_charts()
+    instance, cpu_chart, request_chart = work_list_service.get_chart()
 
-    return render_template("workerList.html", charts=zip(instances, cpu_charts, network_packets_in_charts))
+    return render_template("workerList.html", charts=zip(instances, cpu_charts, requests_charts), manager_chart = zip(instance, cpu_chart, request_chart))

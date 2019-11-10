@@ -1,5 +1,15 @@
 {% extends "layout.html" %}
+
+
+{#<script type="text/javascript">#}
+{#  setInterval("my_function();",1000);#}
+{##}
+{#    function my_function(){#}
+{#        window.location = location.href;#}
+{#    }#}
+{#</script>#}
 {% block content %}
+    <meta http-equiv="refresh" content="60">
     <div class="spacer-50"></div>
     <section>
 
@@ -9,6 +19,23 @@
         <div class="spacer-20"></div>
       </div>
       <div class="spacer-50"></div>
+
+    {% for instance, cpu_chart, network_packet_in_chart in manager_chart %}
+
+          <div class="row align-center">
+              <h3 class="mb-4" style="padding-top: 2rem">Instance Manager:  {{ instance }}</h3>
+          </div>
+          <div class="spacer-20"></div>
+          <div class="row charts">
+              <div class="col-md-6">
+                  <img src="data:;base64,{{ cpu_chart }}"/>
+              </div>
+              <div class="col-md-6" style="margin-right: 0">
+                  <img src="data:;base64,{{ network_packet_in_chart }}"/>
+              </div>
+          </div>
+    {% endfor %}
+
       {% for instance, cpu_chart, network_packet_in_chart in charts %}
 
           <div class="row align-center">
