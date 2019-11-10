@@ -1,0 +1,260 @@
+[2019-11-07 02:56:39 +0000] [1435] [INFO] Starting gunicorn 19.9.0
+[2019-11-07 02:56:39 +0000] [1435] [INFO] Listening at: http://0.0.0.0:5000 (1435)
+[2019-11-07 02:56:39 +0000] [1435] [INFO] Using worker: sync
+[2019-11-07 02:56:39 +0000] [1438] [INFO] Booting worker with pid: 1438
+[2019-11-07 02:57:07 +0000] [1438] [ERROR] Error handling request /workers
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 176, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerListController.py", line 11, in list_worker
+    instances, cpu_charts, requests_charts = work_list_service.get_charts()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerListService.py", line 40, in get_charts
+    target_group = self.CLIENT.describe_target_health(TargetGroupArn=current_app.config["TARGET_GROUP_ARN"])
+  File "/usr/local/lib/python3.5/dist-packages/botocore/client.py", line 357, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/botocore/client.py", line 661, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (ValidationError) when calling the DescribeTargetHealth operation: 'arn:aws:elasticloadbalancing:us-east-1:479498022568:targetgroup/ECE1779A2-TG/b7c975c015d56e4a' is not a valid target group ARN
+[2019-11-07 02:57:15 +0000] [1438] [ERROR] Error handling request /workers
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 176, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerListController.py", line 11, in list_worker
+    instances, cpu_charts, requests_charts = work_list_service.get_charts()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerListService.py", line 40, in get_charts
+    target_group = self.CLIENT.describe_target_health(TargetGroupArn=current_app.config["TARGET_GROUP_ARN"])
+  File "/usr/local/lib/python3.5/dist-packages/botocore/client.py", line 357, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/botocore/client.py", line 661, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (ValidationError) when calling the DescribeTargetHealth operation: 'arn:aws:elasticloadbalancing:us-east-1:479498022568:targetgroup/ECE1779A2-TG/b7c975c015d56e4a' is not a valid target group ARN
+[2019-11-07 02:57:17 +0000] [1438] [ERROR] Error handling request /workers
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 176, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerListController.py", line 11, in list_worker
+    instances, cpu_charts, requests_charts = work_list_service.get_charts()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerListService.py", line 40, in get_charts
+    target_group = self.CLIENT.describe_target_health(TargetGroupArn=current_app.config["TARGET_GROUP_ARN"])
+  File "/usr/local/lib/python3.5/dist-packages/botocore/client.py", line 357, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/botocore/client.py", line 661, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (ValidationError) when calling the DescribeTargetHealth operation: 'arn:aws:elasticloadbalancing:us-east-1:479498022568:targetgroup/ECE1779A2-TG/b7c975c015d56e4a' is not a valid target group ARN
+[2019-11-07 02:58:27 +0000] [1438] [ERROR] Error handling request /workers
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 176, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerListController.py", line 11, in list_worker
+    instances, cpu_charts, requests_charts = work_list_service.get_charts()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerListService.py", line 40, in get_charts
+    target_group = self.CLIENT.describe_target_health(TargetGroupArn=current_app.config["TARGET_GROUP_ARN"])
+  File "/usr/local/lib/python3.5/dist-packages/botocore/client.py", line 357, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/botocore/client.py", line 661, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (ValidationError) when calling the DescribeTargetHealth operation: 'arn:aws:elasticloadbalancing:us-east-1:479498022568:targetgroup/ECE1779A2-TG/b7c975c015d56e4a' is not a valid target group ARN
+[2019-11-07 02:59:03 +0000] [1435] [INFO] Handling signal: term
+[2019-11-07 02:59:03 +0000] [1438] [INFO] Worker exiting (pid: 1438)
+[2019-11-07 02:59:03 +0000] [1435] [INFO] Shutting down: Master
+[2019-11-07 03:36:54 +0000] [2096] [INFO] Starting gunicorn 19.9.0
+[2019-11-07 03:36:54 +0000] [2096] [INFO] Listening at: http://0.0.0.0:5000 (2096)
+[2019-11-07 03:36:54 +0000] [2096] [INFO] Using worker: sync
+[2019-11-07 03:36:54 +0000] [2099] [INFO] Booting worker with pid: 2099
+[2019-11-07 03:38:59,701] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 03:50:07,992] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 03:52:23,807] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 03:52:36,199] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 04:36:47,764] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 04:37:23 +0000] [2096] [CRITICAL] WORKER TIMEOUT (pid:2099)
+[2019-11-07 04:37:23 +0000] [2099] [INFO] Worker exiting (pid: 2099)
+[2019-11-07 04:37:23 +0000] [3323] [INFO] Booting worker with pid: 3323
+[2019-11-07 05:23:09,089] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 05:24:30,088] ERROR in workerManagementController: ----------Internal Error: {'thresholdForGrowing': ['Not a valid integer value', 'Number must be between 0 and 100.'], 'ratioToShrinking': ['Number must be between 0 and 10.'], 'ratioToGrowing': ['Number must be between 0 and 10.'], 'thresholdForShrinking': ['Not a valid integer value', 'Number must be between 0 and 100.']}----------
+[2019-11-07 05:25:58,567] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 05:26:43,688] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 05:27:11,021] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 05:40:14,152] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 05:47:33,151] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 05:55:14,542] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 12:04:04 +0000] [2096] [CRITICAL] WORKER TIMEOUT (pid:3323)
+[2019-11-07 12:04:04 +0000] [3323] [INFO] Worker exiting (pid: 3323)
+[2019-11-07 12:04:04 +0000] [14423] [INFO] Booting worker with pid: 14423
+[2019-11-07 14:04:20 +0000] [2096] [CRITICAL] WORKER TIMEOUT (pid:14423)
+[2019-11-07 14:04:20 +0000] [14423] [INFO] Worker exiting (pid: 14423)
+[2019-11-07 14:04:20 +0000] [17451] [INFO] Booting worker with pid: 17451
+[2019-11-07 16:29:30,286] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 16:41:20,043] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 16:55:33,171] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 17:25:29 +0000] [2096] [CRITICAL] WORKER TIMEOUT (pid:17451)
+[2019-11-07 17:25:29 +0000] [17451] [INFO] Worker exiting (pid: 17451)
+[2019-11-07 17:25:29 +0000] [22505] [INFO] Booting worker with pid: 22505
+[2019-11-07 21:05:17 +0000] [2096] [CRITICAL] WORKER TIMEOUT (pid:22505)
+[2019-11-07 21:05:17 +0000] [22505] [INFO] Worker exiting (pid: 22505)
+[2019-11-07 21:05:17 +0000] [27588] [INFO] Booting worker with pid: 27588
+[2019-11-07 21:10:32 +0000] [2096] [CRITICAL] WORKER TIMEOUT (pid:27588)
+[2019-11-07 21:10:32 +0000] [27588] [INFO] Worker exiting (pid: 27588)
+[2019-11-07 21:10:32 +0000] [27700] [INFO] Booting worker with pid: 27700
+[2019-11-07 21:17:50 +0000] [2096] [CRITICAL] WORKER TIMEOUT (pid:27700)
+[2019-11-07 21:17:50 +0000] [27700] [INFO] Worker exiting (pid: 27700)
+[2019-11-07 21:17:50 +0000] [27865] [INFO] Booting worker with pid: 27865
+[2019-11-07 21:36:58,758] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 21:42:20,815] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 21:44:53,851] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 21:54:57 +0000] [2096] [CRITICAL] WORKER TIMEOUT (pid:27865)
+[2019-11-07 21:54:57 +0000] [27865] [INFO] Worker exiting (pid: 27865)
+[2019-11-07 21:54:58 +0000] [28973] [INFO] Booting worker with pid: 28973
+[2019-11-07 21:56:46,679] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 21:59:16,013] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 22:05:41,596] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 22:12:35,408] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-07 22:19:55 +0000] [2096] [CRITICAL] WORKER TIMEOUT (pid:28973)
+[2019-11-07 22:19:55 +0000] [28973] [INFO] Worker exiting (pid: 28973)
+[2019-11-07 22:19:55 +0000] [29745] [INFO] Booting worker with pid: 29745
+[2019-11-07 23:40:17 +0000] [2096] [CRITICAL] WORKER TIMEOUT (pid:29745)
+[2019-11-07 23:40:17 +0000] [29745] [INFO] Worker exiting (pid: 29745)
+[2019-11-07 23:40:17 +0000] [31743] [INFO] Booting worker with pid: 31743
+[2019-11-08 01:41:45,769] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-08 01:49:39,639] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-08 01:51:23,850] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-08 01:54:08,065] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-08 02:12:03,163] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-08 02:20:43,054] INFO in workerManagementController: ----------Auto-scaling policy has been changed successfully!----------
+[2019-11-08 02:41:51 +0000] [2096] [INFO] Handling signal: hup
+[2019-11-08 02:41:51 +0000] [2096] [INFO] Hang up: Master
+[2019-11-08 02:41:52 +0000] [2096] [INFO] Handling signal: term
+[2019-11-08 02:41:52 +0000] [4369] [INFO] Booting worker with pid: 4369
+[2019-11-08 02:42:22 +0000] [2096] [INFO] Shutting down: Master
+[2019-11-08 02:47:42 +0000] [1516] [INFO] Starting gunicorn 19.9.0
+[2019-11-08 02:47:42 +0000] [1516] [INFO] Listening at: http://0.0.0.0:5000 (1516)
+[2019-11-08 02:47:42 +0000] [1516] [INFO] Using worker: sync
+[2019-11-08 02:47:42 +0000] [1519] [INFO] Booting worker with pid: 1519
+[2019-11-08 02:50:08 +0000] [1516] [INFO] Handling signal: term
+[2019-11-08 02:50:08 +0000] [1519] [INFO] Worker exiting (pid: 1519)
+[2019-11-08 02:50:08 +0000] [1516] [INFO] Shutting down: Master
+[2019-11-08 02:53:14 +0000] [1439] [INFO] Starting gunicorn 19.9.0
+[2019-11-08 02:53:14 +0000] [1439] [INFO] Listening at: http://0.0.0.0:5000 (1439)
+[2019-11-08 02:53:14 +0000] [1439] [INFO] Using worker: sync
+[2019-11-08 02:53:14 +0000] [1442] [INFO] Booting worker with pid: 1442
+[2019-11-08 02:55:59 +0000] [1439] [CRITICAL] WORKER TIMEOUT (pid:1442)
+[2019-11-08 02:55:59 +0000] [1442] [INFO] Worker exiting (pid: 1442)
+[2019-11-08 02:55:59 +0000] [1514] [INFO] Booting worker with pid: 1514
+[2019-11-08 02:56:22 +0000] [1439] [INFO] Handling signal: term
+[2019-11-08 02:56:22 +0000] [1514] [INFO] Worker exiting (pid: 1514)
+[2019-11-08 02:56:22 +0000] [1439] [INFO] Shutting down: Master
+[2019-11-08 02:57:21 +0000] [1416] [INFO] Starting gunicorn 19.9.0
+[2019-11-08 02:57:21 +0000] [1416] [INFO] Listening at: http://0.0.0.0:5000 (1416)
+[2019-11-08 02:57:21 +0000] [1416] [INFO] Using worker: sync
+[2019-11-08 02:57:21 +0000] [1419] [INFO] Booting worker with pid: 1419
+[2019-11-08 15:57:18 +0000] [1416] [CRITICAL] WORKER TIMEOUT (pid:1419)
+[2019-11-08 15:57:18 +0000] [1419] [INFO] Worker exiting (pid: 1419)
+[2019-11-08 15:57:19 +0000] [20243] [INFO] Booting worker with pid: 20243
+[2019-11-08 16:10:52 +0000] [1416] [CRITICAL] WORKER TIMEOUT (pid:20243)
+[2019-11-08 16:10:52 +0000] [20243] [INFO] Worker exiting (pid: 20243)
+[2019-11-08 16:10:52 +0000] [20662] [INFO] Booting worker with pid: 20662
+[2019-11-08 16:37:47 +0000] [1416] [CRITICAL] WORKER TIMEOUT (pid:20662)
+[2019-11-08 16:37:47 +0000] [20662] [INFO] Worker exiting (pid: 20662)
+[2019-11-08 16:37:48 +0000] [21421] [INFO] Booting worker with pid: 21421
+[2019-11-08 16:53:41 +0000] [1416] [CRITICAL] WORKER TIMEOUT (pid:21421)
+[2019-11-08 16:53:41 +0000] [21421] [INFO] Worker exiting (pid: 21421)
+[2019-11-08 16:53:41 +0000] [21777] [INFO] Booting worker with pid: 21777
+[2019-11-08 22:52:49 +0000] [1416] [CRITICAL] WORKER TIMEOUT (pid:21777)
+[2019-11-08 22:52:49 +0000] [21777] [INFO] Worker exiting (pid: 21777)
+[2019-11-08 22:52:49 +0000] [30220] [INFO] Booting worker with pid: 30220
+[2019-11-09 01:22:30 +0000] [1416] [CRITICAL] WORKER TIMEOUT (pid:30220)
+[2019-11-09 01:22:30 +0000] [30220] [INFO] Worker exiting (pid: 30220)
+[2019-11-09 01:22:30 +0000] [1368] [INFO] Booting worker with pid: 1368
+[2019-11-09 12:47:02 +0000] [1416] [CRITICAL] WORKER TIMEOUT (pid:1368)
+[2019-11-09 12:47:02 +0000] [1368] [INFO] Worker exiting (pid: 1368)
+[2019-11-09 12:47:03 +0000] [17271] [INFO] Booting worker with pid: 17271
+[2019-11-10 17:59:15 +0000] [1416] [CRITICAL] WORKER TIMEOUT (pid:17271)
+[2019-11-10 17:59:15 +0000] [17271] [INFO] Worker exiting (pid: 17271)
+[2019-11-10 17:59:15 +0000] [25593] [INFO] Booting worker with pid: 25593

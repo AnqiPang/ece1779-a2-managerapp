@@ -6,6 +6,7 @@ class Config(object):
     SECRET_KEY = "fe8e5c349e8eb13bf65bdc261229d43d"
 
     TARGET_GROUP_ARN = "arn:aws:elasticloadbalancing:us-east-1:479498022568:targetgroup/ECE1779A2-TG/b7c975c015d56e4a"
+    # "arn:aws:elasticloadbalancing:us-east-1:479498022568:targetgroup/ECE1779A2-TG/b7c975c015d56e4a"
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = "mysql://ece1779a2:password123@ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2"
