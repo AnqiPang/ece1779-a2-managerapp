@@ -18,9 +18,9 @@ def update_management_data(threshold_growing, threshold_shrinking, ratio_growing
 def init_current_instance_amount(current_instance_amount):
     record = ScriptMonitor.query.get(1)
     if record is None:
-        data = ScriptMonitor(current_instance_amount, 5)
+        data = ScriptMonitor(current_instance_amount, 3)
         db.session.add(data)
     else:
         record.current_instance_amount = current_instance_amount
-        record.retry_time = 5
+        record.retry_time = 3
     db.session.commit()
