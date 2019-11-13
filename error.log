@@ -258,3 +258,442 @@ botocore.exceptions.ClientError: An error occurred (ValidationError) when callin
 [2019-11-10 17:59:15 +0000] [1416] [CRITICAL] WORKER TIMEOUT (pid:17271)
 [2019-11-10 17:59:15 +0000] [17271] [INFO] Worker exiting (pid: 17271)
 [2019-11-10 17:59:15 +0000] [25593] [INFO] Booting worker with pid: 25593
+[2019-11-10 19:35:31 +0000] [1416] [CRITICAL] WORKER TIMEOUT (pid:25593)
+[2019-11-10 19:35:31 +0000] [25593] [INFO] Worker exiting (pid: 25593)
+[2019-11-10 19:35:31 +0000] [27974] [INFO] Booting worker with pid: 27974
+[2019-11-10 19:35:32 +0000] [27974] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/base.py", line 129, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/base.py", line 138, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/app/wsgiapp.py", line 52, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/app/wsgiapp.py", line 41, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/util.py", line 350, in import_app
+    __import__(module)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/app.py", line 3, in <module>
+    app = create_app()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/__init__.py", line 9, in create_app
+    from webapp import controllers
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/__init__.py", line 3, in <module>
+    from .workerManagementController import *
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerManagementController.py", line 2, in <module>
+    from webapp.services.workerManagementService import *
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerManagementService.py", line 3, in <module>
+    import pymysql
+ImportError: No module named 'pymysql'
+[2019-11-10 19:35:32 +0000] [27974] [INFO] Worker exiting (pid: 27974)
+[2019-11-10 19:35:32 +0000] [1416] [INFO] Shutting down: Master
+[2019-11-10 19:35:32 +0000] [1416] [INFO] Reason: Worker failed to boot.
+[2019-11-11 17:32:42 +0000] [30677] [INFO] Starting gunicorn 19.9.0
+[2019-11-11 17:32:42 +0000] [30677] [INFO] Listening at: http://0.0.0.0:5000 (30677)
+[2019-11-11 17:32:42 +0000] [30677] [INFO] Using worker: sync
+[2019-11-11 17:32:42 +0000] [30680] [INFO] Booting worker with pid: 30680
+[2019-11-11 17:35:42 +0000] [30677] [INFO] Handling signal: term
+[2019-11-11 17:35:42 +0000] [30680] [INFO] Worker exiting (pid: 30680)
+[2019-11-11 17:35:42 +0000] [30677] [INFO] Shutting down: Master
+[2019-11-13 02:07:21 +0000] [14107] [INFO] Starting gunicorn 19.9.0
+[2019-11-13 02:07:21 +0000] [14107] [INFO] Listening at: http://0.0.0.0:5000 (14107)
+[2019-11-13 02:07:21 +0000] [14107] [INFO] Using worker: sync
+[2019-11-13 02:07:21 +0000] [14110] [INFO] Booting worker with pid: 14110
+[2019-11-13 02:07:37 +0000] [14110] [ERROR] Error handling request /workers/clear_s3
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/lib/python3.5/socket.py", line 693, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/lib/python3.5/socket.py", line 732, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 176, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerManagementController.py", line 69, in clear_s3
+    worker_management_service.delete_rds_data()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerManagementService.py", line 166, in delete_rds_data
+    database=current_app.config['RDS']['database'])
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 630, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2' ([Errno -2] Name or service not known)")
+[2019-11-13 02:07:44 +0000] [14110] [ERROR] Error handling request /workers/clear_s3
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/lib/python3.5/socket.py", line 693, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/lib/python3.5/socket.py", line 732, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 176, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerManagementController.py", line 69, in clear_s3
+    worker_management_service.delete_rds_data()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerManagementService.py", line 166, in delete_rds_data
+    database=current_app.config['RDS']['database'])
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 630, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2' ([Errno -2] Name or service not known)")
+[2019-11-13 02:07:48 +0000] [14110] [ERROR] Error handling request /workers/clear_s3
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/lib/python3.5/socket.py", line 693, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/lib/python3.5/socket.py", line 732, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 176, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerManagementController.py", line 69, in clear_s3
+    worker_management_service.delete_rds_data()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerManagementService.py", line 166, in delete_rds_data
+    database=current_app.config['RDS']['database'])
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 630, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2' ([Errno -2] Name or service not known)")
+[2019-11-13 02:09:03 +0000] [14110] [ERROR] Error handling request /workers/clear_s3
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/lib/python3.5/socket.py", line 693, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/lib/python3.5/socket.py", line 732, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 176, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerManagementController.py", line 69, in clear_s3
+    worker_management_service.delete_rds_data()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerManagementService.py", line 166, in delete_rds_data
+    database=current_app.config['RDS']['database'])
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 630, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2' ([Errno -2] Name or service not known)")
+[2019-11-13 02:09:47 +0000] [14169] [INFO] Starting gunicorn 19.9.0
+[2019-11-13 02:09:47 +0000] [14169] [INFO] Listening at: http://0.0.0.0:5000 (14169)
+[2019-11-13 02:09:47 +0000] [14169] [INFO] Using worker: sync
+[2019-11-13 02:09:47 +0000] [14172] [INFO] Booting worker with pid: 14172
+[2019-11-13 02:09:56 +0000] [14172] [ERROR] Error handling request /workers/clear_s3
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/lib/python3.5/socket.py", line 693, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/lib/python3.5/socket.py", line 732, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 176, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerManagementController.py", line 69, in clear_s3
+    worker_management_service.delete_rds_data()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerManagementService.py", line 166, in delete_rds_data
+    database=current_app.config['RDS']['database'])
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 630, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2' ([Errno -2] Name or service not known)")
+[2019-11-13 02:10:26 +0000] [14169] [CRITICAL] WORKER TIMEOUT (pid:14172)
+[2019-11-13 02:10:26 +0000] [14172] [INFO] Worker exiting (pid: 14172)
+[2019-11-13 02:10:27 +0000] [14194] [INFO] Booting worker with pid: 14194
+[2019-11-13 02:10:42 +0000] [14206] [INFO] Starting gunicorn 19.9.0
+[2019-11-13 02:10:42 +0000] [14206] [INFO] Listening at: http://0.0.0.0:5000 (14206)
+[2019-11-13 02:10:42 +0000] [14206] [INFO] Using worker: sync
+[2019-11-13 02:10:42 +0000] [14209] [INFO] Booting worker with pid: 14209
+[2019-11-13 02:12:36 +0000] [14209] [ERROR] Error handling request /workers/clear_s3
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/lib/python3.5/socket.py", line 693, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/lib/python3.5/socket.py", line 732, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 176, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerManagementController.py", line 69, in clear_s3
+    worker_management_service.delete_rds_data()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerManagementService.py", line 166, in delete_rds_data
+    database=current_app.config['RDS']['database'])
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 630, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2' ([Errno -2] Name or service not known)")
+[2019-11-13 02:12:53 +0000] [14209] [ERROR] Error handling request /workers/clear_s3
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/lib/python3.5/socket.py", line 693, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/lib/python3.5/socket.py", line 732, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 176, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerManagementController.py", line 69, in clear_s3
+    worker_management_service.delete_rds_data()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerManagementService.py", line 166, in delete_rds_data
+    database=current_app.config['RDS']['database'])
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 630, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2' ([Errno -2] Name or service not known)")
+[2019-11-13 02:25:31 +0000] [14209] [ERROR] Error handling request /workers/clear_s3
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/lib/python3.5/socket.py", line 693, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/lib/python3.5/socket.py", line 732, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/usr/local/lib/python3.5/dist-packages/gunicorn/workers/sync.py", line 176, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.5/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/controllers/workerManagementController.py", line 69, in clear_s3
+    worker_management_service.delete_rds_data()
+  File "/home/ubuntu/Desktop/ece1779-managerapp/webapp/services/workerManagementService.py", line 166, in delete_rds_data
+    database=current_app.config['RDS']['database'])
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.5/dist-packages/pymysql/connections.py", line 630, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2' ([Errno -2] Name or service not known)")

@@ -10,6 +10,7 @@ class Config(object):
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = "mysql://ece1779a2:password123@ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2"
+    #SQLALCHEMY_DATABASE_URI = "mysql://ece1779a1:password123@localhost/ece1779a1"
 
     # Nov 6th: "ami-0353607cefbd075a3"
     # previous AMI: 'ami-0f7118067ffa41e5f'
@@ -26,3 +27,8 @@ class Config(object):
 
     MANAGER_NAME = 'ECE1779A2-manager-app'
     S3_BUCKET = "2019fall-ece1779a2"
+
+    RDS = {'user' : 'ece1779a2',
+           'password': 'password123',
+           'host': 'ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2',
+           'database': 'ece1779a2'}
