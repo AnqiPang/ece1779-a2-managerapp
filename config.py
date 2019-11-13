@@ -30,5 +30,5 @@ class Config(object):
 
     RDS = {'user' : 'ece1779a2',
            'password': 'password123',
-           'host': 'ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com/ece1779a2',
+           'host': 'ece1779a2-rds.coc6d8upfz6v.us-east-1.rds.amazonaws.com',
            'database': 'ece1779a2'}
